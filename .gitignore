@@ -33,3 +33,6 @@
 
 # jetbrains
 .idea/
+.cmake-build-debug/
+.cmake-build-release/
+/out/
