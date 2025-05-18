@@ -56,13 +56,12 @@ namespace message_analyzer {
 
     PluginInterface& operator=(const PluginInterface&) = delete;
 
-    // �ṩ�����ͼ����������ros msg��������
     virtual std::optional<DataTypeInfo> getTypeInfo() const = 0;
-    // ��ȡ��ͼ���ݣ��ο�map-masterͨ�õ�ͼ���ݽӿ�
+
     virtual ErrorInfo setMapData(const std::string& jsonStr) = 0;
-    // ��ȡbag��topic��ȫ�����ݣ����ؼ�������
+
     virtual PlaybackProcessResult setTopicTypeData(const std::map<Topic, std::any>& params) = 0;
-    // ���ݻطŹ��̣���ȡ�طŹ����е�topic���ݣ���֡�������ؼ�������
+
     virtual PlaybackProcessResult sendPlaybackData(const std::map<Topic, std::any>& params) = 0;
 
   protected:

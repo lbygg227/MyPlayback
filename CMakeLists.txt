@@ -16,6 +16,8 @@ aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/playback PLAYBACK_SRC)
 add_executable(${PROJECT_NAME}
         main.cpp
         ${PLAYBACK_SRC}
+        plugin/example_plugin.h
+        platform/asd.h
 )
 
 target_include_directories(${PROJECT_NAME}

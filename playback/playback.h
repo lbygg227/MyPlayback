@@ -9,7 +9,7 @@
 #include <functional>
 
 enum class PLAYBACK_STATUS {
-  RUNING,
+  RUNNING,
   PAUSE,
   IDLE
 };

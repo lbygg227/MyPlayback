@@ -6,7 +6,7 @@ void Playback::start() {
   }
 
   // Initialize the playback status
-  status_ = PLAYBACK_STATUS::RUNING;
+  status_ = PLAYBACK_STATUS::RUNNING;
 
   playback_thread_ = std::make_unique<std::jthread>(
     [this](std::stop_token st) {
@@ -58,10 +58,10 @@ void Playback::resume() {
 
   // Notify the playback thread to resume
   std::unique_lock lock{ mtx_ };
-  if (status_ == PLAYBACK_STATUS::RUNING) {
+  if (status_ == PLAYBACK_STATUS::RUNNING) {
     return; // Already running
   }
-  status_ = PLAYBACK_STATUS::RUNING;
+  status_ = PLAYBACK_STATUS::RUNNING;
   lock.unlock();
   cv_.notify_one();
 }
