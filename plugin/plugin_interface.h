@@ -8,15 +8,13 @@
 #include <variant>
 
 namespace message_analyzer {
-
   using MapType = std::string;
   using PlayBackTopic = std::string;
   using Topic = std::string;
   using PngType = std::string;
   using JsonType = std::string;
 
-  enum class ErrorType : int8_t
-  {
+  enum class ErrorType : int8_t {
     kOk = 0,
     kError,
     kDBError,
@@ -35,9 +33,10 @@ namespace message_analyzer {
     ErrorType errType;
     std::string errorMsg;
 
-    ErrorInfo() :retCode(0), errType(ErrorType::kOk) {}
+    ErrorInfo() : retCode(0), errType(ErrorType::kOk) {
+    }
 
-    ErrorInfo(const int& errCode, std::string errMsg, const ErrorType& errType)
+    ErrorInfo(const int &errCode, std::string errMsg, const ErrorType &errType)
       : retCode(errCode), errType(errType), errorMsg(std::move(errMsg)) {
     }
 
@@ -48,21 +47,23 @@ namespace message_analyzer {
 
   class PluginInterface {
   public:
-    PluginInterface() {};
+    PluginInterface() {
+    };
 
-    virtual ~PluginInterface() {};
+    virtual ~PluginInterface() {
+    };
 
-    PluginInterface(const PluginInterface&) = delete;
+    PluginInterface(const PluginInterface &) = delete;
 
-    PluginInterface& operator=(const PluginInterface&) = delete;
+    PluginInterface &operator=(const PluginInterface &) = delete;
 
     virtual std::optional<DataTypeInfo> getTypeInfo() const = 0;
 
-    virtual ErrorInfo setMapData(const std::string& jsonStr) = 0;
+    virtual ErrorInfo setMapData(const std::string &jsonStr) = 0;
 
-    virtual PlaybackProcessResult setTopicTypeData(const std::map<Topic, std::any>& params) = 0;
+    virtual PlaybackProcessResult setTopicTypeData(const std::map<Topic, std::any> &params) = 0;
 
-    virtual PlaybackProcessResult sendPlaybackData(const std::map<Topic, std::any>& params) = 0;
+    virtual PlaybackProcessResult sendPlaybackData(const std::map<Topic, std::any> &params) = 0;
 
   protected:
   };

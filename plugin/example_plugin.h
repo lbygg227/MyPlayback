@@ -8,15 +8,15 @@
 
 class ExamplePlugin final : public message_analyzer::PluginInterface {
 public:
-    std::optional<message_analyzer::DataTypeInfo> getTypeInfo() const override;
+  std::optional<message_analyzer::DataTypeInfo> getTypeInfo() const override;
 
-    message_analyzer::ErrorInfo setMapData(const std::string &jsonStr) override;
+  message_analyzer::ErrorInfo setMapData(const std::string &jsonStr) override;
 
-    message_analyzer::PlaybackProcessResult
-    setTopicTypeData(const std::map<message_analyzer::Topic, std::any> &params) override;
+  message_analyzer::PlaybackProcessResult
+  setTopicTypeData(const std::map<message_analyzer::Topic, std::any> &params) override;
 
-    message_analyzer::PlaybackProcessResult
-    sendPlaybackData(const std::map<message_analyzer::Topic, std::any> &params) override;
+  message_analyzer::PlaybackProcessResult
+  sendPlaybackData(const std::map<message_analyzer::Topic, std::any> &params) override;
 };
 
 

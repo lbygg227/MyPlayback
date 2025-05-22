@@ -13,9 +13,10 @@ void Playback::start() {
       while (!st.stop_requested()) {
         // Simulate playback
 
-        std::unique_lock lock{ mtx_ };
+        std::unique_lock lock{mtx_};
         cv_.wait(lock, [this,&st]() {
-          return st.stop_requested() || status_ != PLAYBACK_STATUS::PAUSE; });
+          return st.stop_requested() || status_ != PLAYBACK_STATUS::PAUSE;
+        });
 
         if (st.stop_requested()) {
           break;
@@ -39,7 +40,7 @@ void Playback::pause() {
   }
 
   // Notify the playback thread to pause
-  std::unique_lock lock{ mtx_ };
+  std::unique_lock lock{mtx_};
   if (status_ == PLAYBACK_STATUS::PAUSE) {
     return; // Already paused
   }
@@ -54,10 +55,8 @@ void Playback::resume() {
     return; // Not running
   }
 
-
-
   // Notify the playback thread to resume
-  std::unique_lock lock{ mtx_ };
+  std::unique_lock lock{mtx_};
   if (status_ == PLAYBACK_STATUS::RUNNING) {
     return; // Already running
   }
@@ -82,6 +81,6 @@ void Playback::stop() {
   }
 
   playback_thread_.reset();
-  std::lock_guard lock{ mtx_ };
+  std::lock_guard lock{mtx_};
   status_ = PLAYBACK_STATUS::IDLE;
 }

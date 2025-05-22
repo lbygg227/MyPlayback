@@ -1,5 +1,6 @@
 #include "playback.h"
 #include <iostream>
+
 void func() {
   for (auto i = 0; i < 100000; i++) {
     std::cout << i << std::endl;
@@ -7,11 +8,10 @@ void func() {
 }
 
 int main() {
-
   Playback playback;
   playback.set_callback([]() {
     func();
-    });
+  });
 
   playback.start();
 
